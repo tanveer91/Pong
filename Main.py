@@ -72,7 +72,10 @@ def paddle_b_down():
     y -= 20
     paddle_b.sety(y)
 
-
+def game_over():
+    pen.write("Game Over", align="center", font=["Courier", 24, "normal"])
+    
+    
 # Keyboard binding
 wn.listen()
 wn.onkeypress(paddle_a_up, "w")
@@ -111,6 +114,10 @@ while True:
         pen.clear()
         pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=["Courier", 24, "normal"])
 
+    if score_a == 10 or score_b == 10:
+        game_over()
+        break
+        
     # Paddle and Ball Collisions
     if (340 < ball.xcor() < 350) and (
             paddle_b.ycor() + 40 > ball.ycor() > paddle_b.ycor() - 50):
